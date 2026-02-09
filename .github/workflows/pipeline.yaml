@@ -1,8 +1,7 @@
 name: Build and Deploy ZIP
  
 on:
-  push:
-    Java-simple-build
+  push: Java-simple-build
  
 jobs:
   build-and-deploy:

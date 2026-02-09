@@ -25,5 +25,32 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
         working-directory: java-hello-world-with-maven-master
+
+      # Zip project output
+      - name: Zip project
+        run: |
+          mkdir deploy
+          cp database-engine-main/target/*.jar deploy/
+          zip -r build.zip deploy
+ 
+      # Clone deployment repo
+      - name: Clone deployment repo
+        run: |
+          git clone https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/saravanan-learn01/Maven-testing-deployment-environment.git deploy-repo
+ 
+      # Copy artifact
+      - name: Copy ZIP
+        run: |
+          cp build.zip deploy-repo/
+ 
+      # Push changes
+      - name: Push artifact
+        run: |
+          cd deploy-repo
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add build.zip
+          git commit -m "Auto deploy build"
+          git push
  
      

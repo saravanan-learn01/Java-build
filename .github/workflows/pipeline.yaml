@@ -1,0 +1,27 @@
+name: Build and Deploy ZIP
+ 
+on:
+  workflow_dispatch
+ 
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+ 
+    steps:
+      # Checkout source repo
+      - name: Checkout source
+        uses: actions/checkout@v3
+ 
+      # Setup Java
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+ 
+      # Build project
+      - name: Build with Maven
+        run: mvn clean package
+        working-directory: java-hello-world-with-maven-master
+ 
+     

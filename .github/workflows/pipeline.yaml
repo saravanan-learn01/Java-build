@@ -30,7 +30,7 @@ jobs:
       - name: Zip project
         run: |
           mkdir deploy
-          cp database-engine-main/target/*.jar deploy/
+          cp Java-hello-world-with-maven-master/target/*.jar deploy/
           zip -r build.zip deploy
  
       # Clone deployment repo

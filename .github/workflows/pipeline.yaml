@@ -1,7 +1,8 @@
 name: Build and Deploy ZIP
  
 on:
-  workflow_dispatch
+  push:
+    Java-simple-build
  
 jobs:
   build-and-deploy:
